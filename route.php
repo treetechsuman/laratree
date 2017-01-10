@@ -24,6 +24,17 @@ switch($menu){
 		//$page_to_load = "views/welcome.php";
 	}
 	break;
+		case 'repository':
+	if($action == 'create'){
+		$page_to_load = "views/create_repository.php";
+	}elseif($action== 'push_to_session'){
+		//$page_to_load = "views/edit_customer.php";
+	}elseif($action== 'delete'){
+		//$page_to_load = "system/process/migration/.php";
+	}else{
+		//$page_to_load = "views/welcome.php";
+	}
+	break;
 	default:
 		$page_to_load = "views/not_found.php";
 	break;

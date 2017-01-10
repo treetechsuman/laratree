@@ -14,6 +14,11 @@
       		Create Migration
       	</a>
       </li>
+      <li <?php if($_SESSION['menu']=='repository'){?> class="active" <?php } ?> >
+        <a href="index.php?menu=repository&action=create">
+          Create Repository
+        </a>
+      </li>
       
     </ul>
   </div>

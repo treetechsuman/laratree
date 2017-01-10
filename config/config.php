@@ -12,6 +12,7 @@ define("Password", "");
 
 define("MigrationFolderPath", "../../../database/migrations/");
 define("ModelFolderPath", "../../../app/Model/");
+define("RepositoryFolderPath", "../../../app/Repositories/");
 $_SESSION['Host'] = 'localhost';
 $_SESSION['Db'] = '';
 $_SESSION['User'] = 'root';

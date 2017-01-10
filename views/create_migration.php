@@ -3,21 +3,12 @@ require_once('config/config.php');
 require_once('system/classes/connection.class.php');
 require_once('system/classes/service.class.php');
 
-$objService = new Service();
-//$dirFileList = $objService->listFolderFiles('database');
+$migratinFolders = scandir('database/migrations/');
 
-$folders = glob('database'. '/*' , GLOB_ONLYDIR);
+//$appFolders = glob('app/Repositories'. '/*' , GLOB_ONLYDIR);
 
-$appFolders = glob('app'. '/*' , GLOB_ONLYDIR);
-/*print_r($folders);
+$modelFolders = scandir('app/Model/');
 
-foreach($folders as $folder){
-$file_list = scandir($folder);
-}
-
-print_r($file_list);
-*/
- //print_r($_SESSION['type']);
  $old_table_name = isset($_SESSION['table_name'])?$_SESSION['table_name']:'';
  $old_no_of_fields = isset($_SESSION['no_of_fields'])?$_SESSION['no_of_fields']:'';
 ?>
@@ -84,33 +75,27 @@ print_r($file_list);
 </div>
 <div class="col-md-5">
 <ul>
-<?php foreach ($folders as $folder) { ?>
-	<li><i class="glyphicon glyphicon-folder-open"></i> <?php echo $folder; ?></li>
-	<ul>
-	<?php 
-		$files = scandir($folder);
-		foreach ($files as $file) { ?>
-		<li>
-			<?php echo $file; if( $file != '.' && $file != '..' ) {?>
-			<a href="system/process/migration/delete_migration.php?file_name=<?php echo $file ?>" class="btn btn-danger btn-xs">
-				<i class="glyphicon glyphicon-remove"></i>
-			</a>
-			<?php } ?>
-			</li>
-	<?php } ?>
-	</ul>
+  <li><i class="glyphicon glyphicon-folder-open"></i> migrations</li>
+<?php foreach ($migratinFolders as $file) { ?>
+  
+  <ul>
+  
+    <li><i class="glyphicon glyphicon-file"></i>
+      <?php echo $file; if( $file != '.' && $file != '..' ) {?>
+      <a href="system/process/migration/delete_migration.php?file_name=<?php echo $file ?>" class="btn btn-danger btn-xs">
+        <i class="glyphicon glyphicon-remove"></i>
+      </a>
+      <?php } ?>
+    </li>
+  </ul>
 <?php } ?>
 </ul>
-
 <ul>
-<?php foreach ($appFolders as $folder) { ?>
-  <li><i class="glyphicon glyphicon-folder-open"></i> <?php echo $folder; ?></li>
+  <li><i class="glyphicon glyphicon-folder-open"></i> Model</li>
   <ul>
-  <?php 
-    $files = scandir($folder);
-    foreach ($files as $file) { ?>
-    <li>
-      <?php echo $file; if( $file != '.' && $file != '..' ) {?>
+  <?php foreach ($modelFolders as $file) { ?>
+    <li><i class="glyphicon glyphicon-file"></i> 
+    <?php echo $file; if( $file != '.' && $file != '..' ) {?>
       <a href="system/process/migration/delete_model.php?file_name=<?php echo $file ?>" class="btn btn-danger btn-xs">
         <i class="glyphicon glyphicon-remove"></i>
       </a>
@@ -118,7 +103,6 @@ print_r($file_list);
       </li>
   <?php } ?>
   </ul>
-<?php } ?>
-</ul>
+</ul> 
 	
 </div>
