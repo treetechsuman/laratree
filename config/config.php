@@ -11,8 +11,10 @@ define("User", "");
 define("Password", "");
 
 define("MigrationFolderPath", "../../../database/migrations/");
-$_SESSION['base_class_dir'] = '';
-$_SESSION['base_process_dir'] = '';
-$_SERVER['view_dir'] = '';
+define("ModelFolderPath", "../../../app/Model/");
+$_SESSION['Host'] = 'localhost';
+$_SESSION['Db'] = '';
+$_SESSION['User'] = 'root';
+$_SESSION['Password'] = '';
 
 ?>

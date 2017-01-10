@@ -3,7 +3,7 @@ $success = isset($_GET['success'])?$_GET['success']:'';
 $message=isset($_GET['message'])?$_GET['message']:'';
 
 ?>
-<div class="col-md-3 message">
+<div class="mymessage">
 <?php if($success == 'yes'){ ?>
 	<div class="alert alert-success alert-dismissable fade in">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
