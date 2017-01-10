@@ -19,7 +19,7 @@ switch($menu){
 	}elseif($action== 'push_to_session'){
 		//$page_to_load = "views/edit_customer.php";
 	}elseif($action== 'delete'){
-		//$page_to_load = "views/delete_customer.php";
+		//$page_to_load = "system/process/migration/.php";
 	}else{
 		//$page_to_load = "views/welcome.php";
 	}

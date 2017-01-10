@@ -1,8 +1,12 @@
-<?php //session_start(); processs
+<?php session_start(); 
+//processs
 require_once('../../../config/config.php');
 require_once('../../classes/locate.class.php');
 
 //echo MigrationFolderPath .'<br>';
+//rtrim($string, ",")
+$_SESSION['field_name']= $_POST['field_name'];
+$_SESSION['type']= $_POST['type'];
 
 $file_name = date("Y").'_'.date("m").'_'.date("d").'_create_'.$_POST['table_name']. '_table.php';
 //echo $file_name;
@@ -31,6 +35,10 @@ if(fopen(MigrationFolderPath.$file_name, "w")){
 		for($i=0;$i<$_POST['no_of_fields'];$i++){
 			if($_POST['type'][$i]=='enum'){
 				$text = "\n\t\t\t$" . "table->".$_POST['type'][$i]."('" . $_POST['field_name'][$i] ."'['value1','value2']);";
+			}elseif($_POST['type'][$i]=='foreign'){
+				$text = "\n\t\t\t$" . "table->integer('" . $_POST['field_name'][$i] ."')->unsigned();";
+				$text .= "\n\t\t\t$" . "table->".$_POST['type'][$i]."('" . $_POST['field_name'][$i] ."')->references('id')->on('table name');";
+
 			}else{
 				$text = "\n\t\t\t$" . "table->".$_POST['type'][$i]."('" . $_POST['field_name'][$i] ."');";
 			}
@@ -53,7 +61,52 @@ if(fopen(MigrationFolderPath.$file_name, "w")){
 	$text = "\n\tpublic function down() {";
 	$text .= "\n\t\tSchema::drop('" .$_POST['table_name']. "');\n\t}\n}";
 	fwrite($myfile, $text);
+	//for creating model-----------------------
+	if($_POST['create_model']=='yes'){
+		//echo 'cteate model tooooo';
+		//ucfirst("hello world!");
+		$model_file_name = rtrim(ucfirst($_POST['table_name']),'s'). '.php';
+		//echo $file_name;
+		$myfile = fopen(ModelFolderPath.$model_file_name, "w") or die("Unable to open file!");
+		if(fopen(ModelFolderPath.$model_file_name, "w")){
+			$text = "<?php \n";
+			fwrite($myfile, $text);
+
+			$text = "namespace App\Model;\n\n";
+			$text .= "use Illuminate\Database\Eloquent\Model;\n\n";
+			fwrite($myfile, $text);
+
+			$text = "class " .rtrim(ucfirst($_POST['table_name']),'s'). " extends Model{\n";
+			$text .= "\tprotected $" . "table='" . $_POST['table_name'] . "';\n";
+			fwrite($myfile, $text);
+
+			$text ="\tprotected $" . "fillable=[";
+			fwrite($myfile, $text);
+
+			$text = "\n\t\t\t\t'id',";
+				fwrite($myfile, $text);
+			//------------------------logic------------------------------
+			for($i=0;$i<$_POST['no_of_fields'];$i++){
+			
+				$text = "\n\t\t\t\t'" . $_POST['field_name'][$i] . "',";
+				fwrite($myfile, $text);
+			}
+
+			//-----------------------------------------------------------
+			$text ="\n\t\t\t];\n";
+			fwrite($myfile, $text);
+
+			$text ="\tprotected $" . "hidden=[\n";
+			fwrite($myfile, $text);
+
+			$text ="\t];\n}";
+			fwrite($myfile, $text);
+			new Locate('../../../index.php?menu=migration&action=create&success=yes&message=' .$_POST['table_name'] . ' migration and module is created ');
+		}
+
+	}
 	new Locate('../../../index.php?menu=migration&action=create&success=yes&message=' .$_POST['table_name'] . ' migration is created ');
+	
 }else{
 new Locate('../../../index.php?menu=migration&action=create&success=no&message=' . $_POST['table_name'] . ' migration is created ');
 }
