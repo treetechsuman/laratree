@@ -65,6 +65,10 @@ if(fopen(MigrationFolderPath.$file_name, "w")){
 	if($_POST['create_model']=='yes'){
 		//echo 'cteate model tooooo';
 		//ucfirst("hello world!");
+		//create Model folder inside app
+		if (!file_exists(ModelFolderPath)) {
+		    mkdir(ModelFolderPath, 0777, true);
+		}
 		$model_file_name = rtrim(ucfirst($_POST['table_name']),'s'). '.php';
 		//echo $file_name;
 		$myfile = fopen(ModelFolderPath.$model_file_name, "w") or die("Unable to open file!");

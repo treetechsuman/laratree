@@ -9,7 +9,11 @@ $_SESSION['repository']= $_POST['repository'];
 $_SESSION['model']= $_POST['model'];
 $models = $_POST['model'];
 $file_name = ucfirst($_POST['repository']).'Repository.php';
-//echo $file_name;
+//create Repositories folder inside app
+if (!file_exists(RepositoryFolderPath)) {
+    mkdir(RepositoryFolderPath, 0777, true);
+}
+//create another folder in side Repositories----
 if (!file_exists(RepositoryFolderPath.ucfirst($_POST['repository']))) {
     mkdir(RepositoryFolderPath.ucfirst($_POST['repository']), 0777, true);
 }

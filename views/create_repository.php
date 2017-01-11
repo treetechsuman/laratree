@@ -3,11 +3,11 @@ require_once('config/config.php');
 require_once('system/classes/connection.class.php');
 require_once('system/classes/service.class.php');
 
-$migratinFolders = scandir('database/migrations/');
+$migratinFolders = scandir(MigrationFolderPathForView);
 
-$appFolders = glob('app/Repositories'. '/*' , GLOB_ONLYDIR);
+$appFolders = glob(RepositoryFolderPathForView. '/*' , GLOB_ONLYDIR);
 
-$modelFolders = scandir('app/Model/');
+$modelFolders = scandir(ModelFolderPathForView);
 //print_r($modelFolders);
 
  $old_table_name = isset($_SESSION['table_name'])?$_SESSION['table_name']:'';
@@ -33,7 +33,7 @@ $modelFolders = scandir('app/Model/');
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">Send</button>
+        <button type="submit" class="btn btn-success">Generate</button>
       </div>
     </div>
 </div>
