@@ -49,54 +49,8 @@ $modelFolders = scandir(ModelFolderPathForView);
 	
 </div>
 <div class="col-md-5">
-<ul>
-	<li><i class="glyphicon glyphicon-folder-open"></i> migrations</li>
-<?php foreach ($migratinFolders as $file) { ?>
-	
-	<ul>
-	
-		<li><i class="glyphicon glyphicon-file"></i>
-			<?php echo $file; if( $file != '.' && $file != '..' ) {?>
-			<a href="system/process/migration/delete_migration.php?file_name=<?php echo $file ?>" class="btn btn-danger btn-xs">
-				<i class="glyphicon glyphicon-remove"></i>
-			</a>
-			<?php } ?>
-		</li>
-	</ul>
-<?php } ?>
-</ul>
-<ul>
-	<li><i class="glyphicon glyphicon-folder-open"></i> Model</li>
-	<ul>
-	<?php foreach ($modelFolders as $file) { ?>
-	  <li><i class="glyphicon glyphicon-file"></i> 
-	  <?php echo $file; if( $file != '.' && $file != '..' ) {?>
-      <a href="system/process/migration/delete_model.php?file_name=<?php echo $file ?>" class="btn btn-danger btn-xs">
-        <i class="glyphicon glyphicon-remove"></i>
-      </a>
-      <?php } ?>
-      </li>
-	<?php } ?>
-	</ul>
-</ul> 
+<?php require_once('include/migration_model_file_tree.php'); ?>
+<?php require_once('include/repository_file_tree.php'); ?>
 
-<ul>
-<?php foreach ($appFolders as $folder) { ?>
-  <li><i class="glyphicon glyphicon-folder-open"></i> <?php echo $folder; ?></li>
-  <ul>
-  <?php 
-    $files = scandir($folder);
-    foreach ($files as $file) { ?>
-    <li><i class="glyphicon glyphicon-file"></i>
-      <?php echo $file; if( $file != '.' && $file != '..' ) {?>
-      <a href="system/process/repository/delete_repository.php?file_name=<?php echo $folder.'/'.$file ?>" class="btn btn-danger btn-xs">
-        <i class="glyphicon glyphicon-remove"></i>
-      </a>
-      <?php } ?>
-      </li>
-  <?php } ?>
-  </ul>
-<?php } ?>
-</ul>
 	
 </div>
