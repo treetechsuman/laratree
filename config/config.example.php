@@ -3,7 +3,6 @@
 define("AppName", "laraTree");
 
 //database configuration -------
-define("AppName", "laraTree");
 define("Host", "localhost");
 define("Db", "");
 define("User", "");
