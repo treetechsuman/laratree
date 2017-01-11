@@ -1,8 +1,7 @@
 <?php
 //app configuration -----------
-define("appName", "laraTree");
+define("AppName", "laraTree");
 
-//testing wow
 //database configuration -------
 define("AppName", "laraTree");
 define("Host", "localhost");
@@ -27,7 +26,7 @@ $_SESSION['User'] = 'root';
 $_SESSION['Password'] = '';
 
 
-//create model folder----
+//create Model folder----
 if(!file_exists('../app/Model')) {
 	mkdir('../app/Model', 0777, true);
 }
