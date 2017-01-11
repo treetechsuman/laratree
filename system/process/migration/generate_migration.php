@@ -21,7 +21,7 @@ if(fopen(MigrationFolderPath.$file_name, "w")){
 	$text .= "use Illuminate\Support\Facades\Schema;\n\n";
 	fwrite($myfile, $text);
 
-	$text = "class CreateUsersTable extends Migration {\n";
+	$text = "class Create" .ucfirst($_POST['table_name']). "Table extends Migration {\n";
 	$text .= "\t/**\n\t* Run the migrations.\n\t*\n\t* @return void\n\t*/";
 	fwrite($myfile, $text);
 
