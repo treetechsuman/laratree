@@ -19,6 +19,11 @@
           Create Repository
         </a>
       </li>
+      <li <?php if($_SESSION['menu']=='controller'){?> class="active" <?php } ?> >
+        <a href="index.php?menu=controller&action=create">
+          Create Controller
+        </a>
+      </li>
       <li <?php if($_SESSION['menu']=='file'){?> class="active" <?php } ?> >
         <a href="index.php?menu=file&action=read">
           Read File
