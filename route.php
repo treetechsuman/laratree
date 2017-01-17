@@ -24,6 +24,17 @@ switch($menu){
 		//$page_to_load = "views/welcome.php";
 	}
 	break;
+	case 'controller':
+	if($action == 'create'){
+		$page_to_load = "views/create_controller.php";
+	}elseif($action== 'read'){
+		//$page_to_load = "views/read_file.php";
+	}elseif($action== 'delete'){
+		//$page_to_load = "system/process/migration/.php";
+	}else{
+		//$page_to_load = "views/welcome.php";
+	}
+	break;
 	case 'file':
 	if($action == 'read'){
 		$page_to_load = "views/read_file.php";
