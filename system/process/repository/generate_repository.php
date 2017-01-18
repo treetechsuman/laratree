@@ -130,6 +130,33 @@ if(fopen(RepositoryFolderPath.$_POST['repository'].'/'.$file_name, "w")){
 
 	$text = "}";
 	fwrite($myfile, $text);
+	//for updating AppsServiceProvider.php-------------------------
+	// These two lines can be accomplished by using array_pop 
+	// This will also prevent it from inserting blank lines 
+	$file  = file('../../../../app/Providers/AppServiceProvider.php'); 
+	array_pop($file); 
+	$fp    = fopen('../../../../app/Providers/AppServiceProvider.php','w'); 
+	fwrite($fp, implode('',$file)); 
+	fclose($fp);  
+
+	// write the new data to the file 
+	$myfile = fopen('../../../../app/Providers/AppServiceProvider.php', 'a'); 
+	/*public function registerCategoryRepo() {
+        return $this->app->bind(
+            'App\\Repositories\\Category\\CategoryRepository',
+            'App\\Repositories\\Category\\EloquentCategory'
+            );
+    }*/
+	$text = "\n\tpublic function register".ucfirst($_POST['repository'])."Repo() {\n";
+	$text .= "\t\treturn $"."this->app->bind(\n";
+	fwrite($myfile, $text);
+
+	$text = "\t\t\t'App\\" . "\Repositories\\"."\\".ucfirst($_POST['repository'])."\\" . "\\".ucfirst($_POST['repository'])."Repository',\n"; 
+	$text .= "\t\t\t'App\\" . "\Repositories\\"."\\".ucfirst($_POST['repository'])."\\" . "\Eloquent".ucfirst($_POST['repository'])."'"; 
+	fwrite($myfile, $text);
+
+	$text = "\n\t\t);\n\t}\n}";
+	fwrite($myfile, $text); 
 
 new Locate('../../../index.php?menu=repository&action=create&success=yes&message=' .$_POST['repository'] . ' Repository and Eloquent is created ');
 	
