@@ -28,7 +28,8 @@ if(file_exists(RouteFolderPath)&&isset($controller)){
 		$text = "\tRoute::get('/','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@index');\n";
 		$text .= "\tRoute::get('/create','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@create');\n";
 		$text .= "\tRoute::post('/store','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@store');\n";
-		$text .= "\tRoute::get('{id}/eidt','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@edit');\n";
+		$text .= "\tRoute::get('/{id}/edit','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@edit');\n";
+		$text .= "\tRoute::get('/{id}','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@show');\n";
 		$text .= "\tRoute::post('/update/{id}','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@update');\n";
 		$text .= "\tRoute::post('/delete/{id}','".ucfirst($controller_prefix)."\\" .substr($controller, 0, -4). "@distory');\n";
 		

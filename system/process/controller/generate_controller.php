@@ -82,31 +82,31 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	fwrite($myfile, $text);
 
 	$text = "\n\tpublic function create(){\n";
-	$text .= "\t\t//code for create\n";
+	$text .= "\t\treturn view('".lcfirst($_POST['controller']).".create');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
-	$text = "\n\tpublic function store(){\n";
+	$text = "\n\tpublic function store(Request $"."request){\n";
 	$text .= "\t\t//code for store\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 	
 	$text = "\n\tpublic function show(){\n";
-	$text .= "\t\t//code for show\n";
+	$text .= "\t\treturn view('".lcfirst($_POST['controller']).".show');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
-	$text = "\n\tpublic function edit(){\n";
-	$text .= "\t\t//code for edit\n";
+	$text = "\n\tpublic function edit($" . "id){\n";
+	$text .= "\t\treturn view('".lcfirst($_POST['controller']).".edit');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
-	$text = "\n\tpublic function update(){\n";
+	$text = "\n\tpublic function update($" . "id ,Request $"."request){\n";
 	$text .= "\t\t//code for update\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
-	$text = "\n\tpublic function destroy(){\n";
+	$text = "\n\tpublic function destroy($" . "id){\n";
 	$text .= "\t\t//code for destroy\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
