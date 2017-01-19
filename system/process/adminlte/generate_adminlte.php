@@ -79,4 +79,4 @@ if(file_exists(RouteFolderPath)){
 	fwrite($myfile, $text);
 }
 
-//new Locate('../../../index.php?menu=adminlte&action=create&success=yes&message=AdminLTE is integrated ');
+new Locate('../../../index.php?menu=adminlte&action=create&success=yes&message=AdminLTE is integrated ');

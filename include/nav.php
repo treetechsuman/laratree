@@ -29,9 +29,15 @@
           Create Views
         </a>
       </li>
+
       <li <?php if($_SESSION['menu']=='adminlte'){?> class="active" <?php } ?> >
         <a href="index.php?menu=adminlte&action=create">
           Create adminlte
+        </a>
+      </li>
+      <li <?php if($_SESSION['menu']=='component'){?> class="active" <?php } ?> >
+        <a href="index.php?menu=component&action=create">
+          Add Component
         </a>
       </li>
       <li <?php if($_SESSION['menu']=='file'){?> class="active" <?php } ?> >
