@@ -51,6 +51,12 @@ switch($menu){
 		}
 		break;
 
+	case 'component':
+		if($action == 'create'){
+			$page_to_load = "views/create_component.php";
+		}
+		break;
+
 	case 'file':
 		if($action == 'read'){
 			$page_to_load = "views/read_file.php";
