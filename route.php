@@ -45,6 +45,12 @@ switch($menu){
 		}
 		break;
 
+	case 'adminlte':
+		if($action == 'create'){
+			$page_to_load = "views/create_adminlte.php";
+		}
+		break;
+
 	case 'file':
 		if($action == 'read'){
 			$page_to_load = "views/read_file.php";
