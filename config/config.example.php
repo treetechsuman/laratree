@@ -13,7 +13,7 @@ define("MigrationFolderPath", "../../../../database/migrations/");
 define("ModelFolderPath", "../../../../app/Model/");
 define("ControllerFolderPath", "../../../../app/Http/Controllers/");
 define("RepositoryFolderPath", "../../../../app/Repositories/");
-define("ViewFolderPath", "../../../../resources/views/");
+define("ViewFolderPath", "../../../../resources/views/backend/");
 define("RouteFolderPath", "../../../../routes/");
 
 //for views-----------------------------------------
@@ -21,7 +21,7 @@ define("MigrationFolderPathForView", "../database/migrations/");
 define("ModelFolderPathForView", "../app/Model/");
 define("ControllerFolderPathForView", "../app/Http/Controllers");
 define("RepositoryFolderPathForView", "../app/Repositories");
-define("ViewFolderPathForView", "../resources/views");
+define("ViewFolderPathForView", "../resources/views/backend");
 
 
 $_SESSION['Host'] = 'localhost';

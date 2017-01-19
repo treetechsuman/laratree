@@ -77,12 +77,12 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	fwrite($myfile, $text);
 
 	$text = "\n\tpublic function index(){\n";
-	$text .= "\t\treturn view('".lcfirst($_POST['controller']).".index');\n";
+	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".index');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
 	$text = "\n\tpublic function create(){\n";
-	$text .= "\t\treturn view('".lcfirst($_POST['controller']).".create');\n";
+	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".create');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
@@ -92,12 +92,12 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	fwrite($myfile, $text);
 	
 	$text = "\n\tpublic function show(){\n";
-	$text .= "\t\treturn view('".lcfirst($_POST['controller']).".show');\n";
+	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".show');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
 	$text = "\n\tpublic function edit($" . "id){\n";
-	$text .= "\t\treturn view('".lcfirst($_POST['controller']).".edit');\n";
+	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".edit');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
@@ -118,7 +118,7 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 }
 
 
-//new Locate('../../../index.php?menu=controller&action=create&success=yes&message=' .$_POST['controller'] . ' controller is created ');
+new Locate('../../../index.php?menu=controller&action=create&success=yes&message=' .$_POST['controller'] . ' controller is created ');
 	
 
 
