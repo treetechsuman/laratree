@@ -1,26 +1,14 @@
-@extends('layouts/backendlayout/master')
+@extends('backend.layouts.app')
+@section('title')
+    Role & Permission Setup
+@endsection
+@section('site_map')
+    Role & Permission Setup
+@endsection
 @section('content')
-<div class="wrapper">
-    <!-- Left side column. contains the logo and sidebar -->
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-            Role & Permission Setup
-            <small>Control panel</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Role & Permission</li>
-            </ol>
-        </section>
-        <!-- Main content -->
-        <section class="content">
-            <!-- Small boxes (Stat box) -->
-            <div class="col-md-2">
-                <!-- general form elements -->
-                <div class="box box-danger">
+    <div class="row">
+        <div class="col-md-6">
+             <div class="box box-danger">
                     <div class="box-header with-border">
                         <h3 class="box-title">Update Roles</h3>
                     </div>
@@ -43,10 +31,6 @@
                         </form>
                     </div>
                 </div>
-
-                
-            
-        </section>
+        </div>
     </div>
-</div>
 @endsection
