@@ -29,16 +29,6 @@ $source= '../../../laravel/component/rolepermission/model/';
 $destination ='../../../../app/Model/';
 copyr($source, $destination); 
 
-
-// add dashboard route---------------------------
-/*if(file_exists(RouteFolderPath)){
-	$myfile = fopen(RouteFolderPath.'/web.php', "a") or die("Unable to open file!");
-
-	$text = "Route::get('/dashboard','Dashboard\DashboardController@index'); \n";
-	$text .= "Route::get('/logout','Dashboard\DashboardController@logout'); \n";
-	fwrite($myfile, $text);
-}*/
-
 if(file_exists(RouteFolderPath)){
 	$myfile = fopen(RouteFolderPath.'/web.php', "a") or die("Unable to open file!");
 	$text ="/*\n|--------------------------------------------------------------------------\n";
@@ -56,9 +46,7 @@ if(file_exists(RouteFolderPath)){
 		$text .= "\t\tRoute::get('/edit/{id}', 'RolePermission\RolePermissionController@editRole');\n";
 		$text .= "\t\tRoute::post('/update/{id}', 'RolePermission\RolePermissionController@updateRole');\n";
 		$text .= "\t\tRoute::get('/delete/{id}', 'RolePermission\RolePermissionController@deleteRole');\n";
-		$text .= "\t\tRoute::post('/assignpermission', 'RolePermission\RolePermissionController@assignPermission');\n";
-		
-		
+		$text .= "\t\tRoute::post('/assignpermission', 'RolePermission\RolePermissionController@assignPermission');\n";		
 		fwrite($myfile, $text);
 
 		$text = "\t});\n";
@@ -83,22 +71,16 @@ if(file_exists(RouteFolderPath)){
 	fwrite($myfile, $text);
 }
 
-	// These two lines can be accomplished by using array_pop 
-	// This will also prevent it from inserting blank lines 
+	// delete last line from AppServiceProvider.php 
 	$file  = file('../../../../app/Providers/AppServiceProvider.php'); 
 	array_pop($file); 
 	$fp    = fopen('../../../../app/Providers/AppServiceProvider.php','w'); 
 	fwrite($fp, implode('',$file)); 
 	fclose($fp);
 
-
+	//now add function------------------------------------------------------
 	$myfile = fopen('../../../../app/Providers/AppServiceProvider.php', 'a'); 
-	/*public function registerCategoryRepo() {
-        return $this->app->bind(
-            'App\\Repositories\\Category\\CategoryRepository',
-            'App\\Repositories\\Category\\EloquentCategory'
-            );
-    }*/
+	
 	$text = "\n\tpublic function registerRolePermissionRepository() {\n";
 	$text .= "\t\treturn $"."this->app->bind(\n";
 	fwrite($myfile, $text);
@@ -108,12 +90,23 @@ if(file_exists(RouteFolderPath)){
 	fwrite($myfile, $text);
 
 	$text = "\n\t\t);\n\t}\n}";
+	fwrite($myfile, $text);
+
+	//create boot.php inside Provider folder-----------------------------------------------------
+	if(!file_exists('../../../../app/Providers/boot.php')) {
+		$myfile = fopen('../../../../app/Providers/boot.php', 'w');
+		$text = "<?php";
+		fwrite($myfile, $text); 
+	}
+	//now add repository to boot file------------------------------------------------------------
+	$myfile = fopen('../../../../app/Providers/boot.php', 'a');
+	$text = "\n$" . "this->registerRolePermissionRepository();";
 	fwrite($myfile, $text); 
 
-	//now add component menu--------------------------
+	//now add component menu---------------------------------------------------------------------
 	$myfile = fopen('../../../../resources/views/backend/layouts/component_menu.blade.php', 'a'); 
 	
 	$text = "\n<li><a href=\"{{url('/role-permission/role')}}\"><i class=\"fa fa-circle-o\"></i>RolePermission</a></li>\n";
 	fwrite($myfile, $text); 
 
-//new Locate('../../../index.php?menu=adminlte&action=create&success=yes&message=AdminLTE is integrated ');
+new Locate('../../../index.php?menu=adminlte&action=create&success=yes&message=AdminLTE is integrated ');

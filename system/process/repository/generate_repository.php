@@ -147,7 +147,7 @@ if(fopen(RepositoryFolderPath.$_POST['repository'].'/'.$file_name, "w")){
             'App\\Repositories\\Category\\EloquentCategory'
             );
     }*/
-	$text = "\n\tpublic function register".ucfirst($_POST['repository'])."Repo() {\n";
+	$text = "\n\tpublic function register".ucfirst($_POST['repository'])."Repository() {\n";
 	$text .= "\t\treturn $"."this->app->bind(\n";
 	fwrite($myfile, $text);
 
@@ -157,6 +157,18 @@ if(fopen(RepositoryFolderPath.$_POST['repository'].'/'.$file_name, "w")){
 
 	$text = "\n\t\t);\n\t}\n}";
 	fwrite($myfile, $text); 
+
+	//create boot.php inside Provider folder----
+	if(!file_exists('../../../../app/Providers/boot.php')) {
+		$myfile = fopen('../../../../app/Providers/boot.php', 'w');
+		$text = "<?php";
+		fwrite($myfile, $text); 
+	}
+
+	//now add repository to boot file-------------
+	$myfile = fopen('../../../../app/Providers/boot.php', 'a');
+	$text = "\n$" . "this->register".ucfirst($_POST['repository'])."Repository();";
+	fwrite($myfile, $text);
 
 new Locate('../../../index.php?menu=repository&action=create&success=yes&message=' .$_POST['repository'] . ' Repository and Eloquent is created ');
 	
