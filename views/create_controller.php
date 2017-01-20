@@ -42,9 +42,9 @@ $modelFolders = scandir(ModelFolderPathForView);
     </div>
 </div>
 <div class="col-md-5">
-<?php require_once('include/migration_model_file_tree.php'); ?>
+<?php //require_once('include/migration_model_file_tree.php'); ?>
 <?php require_once('include/controller_file_tree.php'); ?>
-<?php require_once('include/repository_file_tree.php'); ?>
+<?php //require_once('include/repository_file_tree.php'); ?>
 
 	
 </div>

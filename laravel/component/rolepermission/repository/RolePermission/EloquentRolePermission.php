@@ -28,7 +28,7 @@ class EloquentRolePermission implements RolePermissionRepository {
   }
 
 	public function getRoleById($id) {
-		return $this->role->findorfail($id)->first();
+		return $this->role->findorfail($id);
 	}
 
 	public function getAllRole() {

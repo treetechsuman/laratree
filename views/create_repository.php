@@ -37,19 +37,9 @@ $modelFolders = scandir(ModelFolderPathForView);
       </div>
     </div>
 </div>
-<div class="col-md-4">
-<ul>
-	<li><i class="glyphicon glyphicon-folder-open"></i> Model</li>
-	<ul>
-	<?php foreach ($modelFolders as $file) { ?>
-	  <li><i class="glyphicon glyphicon-file"></i> <?php echo $file; ?></li>
-	<?php } ?>
-	</ul>
-</ul> 
-	
-</div>
+
 <div class="col-md-5">
-<?php require_once('include/migration_model_file_tree.php'); ?>
+<?php //require_once('include/migration_model_file_tree.php'); ?>
 <?php require_once('include/repository_file_tree.php'); ?>
 
 	

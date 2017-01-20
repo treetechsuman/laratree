@@ -30,6 +30,7 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
+            @include('backend.layouts.generated_menu')
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-laptop"></i>

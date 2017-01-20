@@ -7,8 +7,8 @@ require_once('../../classes/locate.class.php');
 //rtrim($string, ",")
 $_SESSION['field_name']= $_POST['field_name'];
 $_SESSION['type']= $_POST['type'];
-
-$file_name = date("Y").'_'.date("m").'_'.date("d").'_create_'.$_POST['table_name']. '_table.php';
+//HHMMSS
+$file_name = date("Y").'_'.date("m").'_'.date("d").'_'.date("hms").'_create_'.$_POST['table_name']. '_table.php';
 //echo $file_name;
 $myfile = fopen(MigrationFolderPath.$file_name, "w") or die("Unable to open file!");
 
@@ -37,7 +37,7 @@ if(fopen(MigrationFolderPath.$file_name, "w")){
 				$text = "\n\t\t\t$" . "table->".$_POST['type'][$i]."('" . $_POST['field_name'][$i] .",'['value1','value2']);";
 			}elseif($_POST['type'][$i]=='foreign'){
 				$text = "\n\t\t\t$" . "table->integer('" . $_POST['field_name'][$i] ."')->unsigned();";
-				$text .= "\n\t\t\t$" . "table->".$_POST['type'][$i]."('" . $_POST['field_name'][$i] ."')->references('id')->on('table name');";
+				$text .= "\n\t\t\t$" . "table->".$_POST['type'][$i]."('" . $_POST['field_name'][$i] ."')->references('id')->on('table name')->onDelete('cascade');";
 
 			}else{
 				$text = "\n\t\t\t$" . "table->".$_POST['type'][$i]."('" . $_POST['field_name'][$i] ."');";

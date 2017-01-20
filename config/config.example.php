@@ -30,9 +30,4 @@ $_SESSION['User'] = 'root';
 $_SESSION['Password'] = '';
 
 
-//create model folder----
-if(!file_exists('../app/Model')) {
-	mkdir('../app/Model', 0777, true);
-}
-
 ?>
