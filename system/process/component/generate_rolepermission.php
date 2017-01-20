@@ -83,4 +83,37 @@ if(file_exists(RouteFolderPath)){
 	fwrite($myfile, $text);
 }
 
+	// These two lines can be accomplished by using array_pop 
+	// This will also prevent it from inserting blank lines 
+	$file  = file('../../../../app/Providers/AppServiceProvider.php'); 
+	array_pop($file); 
+	$fp    = fopen('../../../../app/Providers/AppServiceProvider.php','w'); 
+	fwrite($fp, implode('',$file)); 
+	fclose($fp);
+
+
+	$myfile = fopen('../../../../app/Providers/AppServiceProvider.php', 'a'); 
+	/*public function registerCategoryRepo() {
+        return $this->app->bind(
+            'App\\Repositories\\Category\\CategoryRepository',
+            'App\\Repositories\\Category\\EloquentCategory'
+            );
+    }*/
+	$text = "\n\tpublic function registerRolePermissionRepository() {\n";
+	$text .= "\t\treturn $"."this->app->bind(\n";
+	fwrite($myfile, $text);
+
+	$text = "\t\t\t'App\\" . "\Repositories\\"."\\"."RolePermission"."\\" . "\\"."RolePermission"."Repository',\n"; 
+	$text .= "\t\t\t'App\\" . "\Repositories\\"."\\"."RolePermission"."\\" . "\Eloquent"."RolePermission"."'"; 
+	fwrite($myfile, $text);
+
+	$text = "\n\t\t);\n\t}\n}";
+	fwrite($myfile, $text); 
+
+	//now add component menu--------------------------
+	$myfile = fopen('../../../../resources/views/backend/layouts/component_menu.blade.php', 'a'); 
+	
+	$text = "\n<li><a href=\"{{url('/role-permission/role')}}\"><i class=\"fa fa-circle-o\"></i>RolePermission</a></li>\n";
+	fwrite($myfile, $text); 
+
 //new Locate('../../../index.php?menu=adminlte&action=create&success=yes&message=AdminLTE is integrated ');

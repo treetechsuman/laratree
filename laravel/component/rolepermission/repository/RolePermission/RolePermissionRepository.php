@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositories\Backend\RolePermission;
+namespace App\Repositories\RolePermission;
 
 /**
  *

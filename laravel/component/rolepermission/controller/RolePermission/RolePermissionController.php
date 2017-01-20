@@ -4,7 +4,7 @@ namespace App\Http\Controllers\RolePermission;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Backend\RolePermission\RolePermissionRepository;
+use App\Repositories\RolePermission\RolePermissionRepository;
 
 
 class RolePermissionController extends Controller
