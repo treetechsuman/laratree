@@ -92,7 +92,7 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	//return redirect('/slider');
 	$text = "\n\tpublic function store(Request $"."request){\n";
 	$text .= "\t\t$"."this->".lcfirst($_POST['controller'])."Repo->create".ucfirst($_POST['controller'])."($"."request->all());\n";
-	$text .= "\t\treturn redirect('/".lcfirst($_POST['controller'])."');\n";
+	$text .= "\t\treturn redirect('admin/".lcfirst($_POST['controller'])."');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 	
@@ -113,14 +113,14 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	//return redirect('/slider');
 	$text = "\n\tpublic function update($" . "id ,Request $"."request){\n";
 	$text .= "\t\t$"."this->".lcfirst($_POST['controller'])."Repo->update".ucfirst($_POST['controller'])."($" . "id,$"."request->all());\n";
-	$text .= "\t\treturn redirect('/".lcfirst($_POST['controller'])."');\n";
+	$text .= "\t\treturn redirect('admin/".lcfirst($_POST['controller'])."');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 	//$this->sliderRepo->deleteSlider($id);
 	//return redirect('/slider');
 	$text = "\n\tpublic function delete($" . "id){\n";
 	$text .= "\t\t$"."this->".lcfirst($_POST['controller'])."Repo->delete".ucfirst($_POST['controller'])."($"."id);\n";
-	$text .= "\t\treturn redirect('/".lcfirst($_POST['controller'])."');\n";
+	$text .= "\t\treturn redirect('admin/".lcfirst($_POST['controller'])."');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
