@@ -77,7 +77,9 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	fwrite($myfile, $text);
 
 	$text = "\n\tpublic function index(){\n";
-	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".index');\n";
+	//$sliders = $this->sliderRepo->getAllSlider();
+	$text .= "\t\t$".lcfirst($_POST['controller'])."s = $". "this->".lcfirst($_POST['controller'])."Repo->getAll".ucfirst($_POST['controller'])."();\n";
+	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".index',compact('".lcfirst($_POST['controller'])."s'));\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
@@ -86,8 +88,11 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
+	//$this->sliderRepo->createSlider($request->all());
+	//return redirect('/slider');
 	$text = "\n\tpublic function store(Request $"."request){\n";
-	$text .= "\t\t//code for store\n";
+	$text .= "\t\t$"."this->".lcfirst($_POST['controller'])."Repo->create".ucfirst($_POST['controller'])."($"."request->all());\n";
+	$text .= "\t\treturn redirect('/".lcfirst($_POST['controller'])."');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 	
@@ -96,18 +101,26 @@ if(fopen(ControllerFolderPath.$_POST['controller'].'/'.$file_name, "w")){
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
+	//$slider = $this->sliderRepo->getSliderById($id);
+	//return view('backend.slider.edit',compact('slider'));
 	$text = "\n\tpublic function edit($" . "id){\n";
-	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".edit');\n";
+	$text .= "\t\t$".lcfirst($_POST['controller'])." = $". "this->".lcfirst($_POST['controller'])."Repo->get".ucfirst($_POST['controller'])."ById($" . "id);\n";
+	$text .= "\t\treturn view('backend.".lcfirst($_POST['controller']).".edit',compact('".lcfirst($_POST['controller'])."'));\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
+	//$this->sliderRepo->updateSlider($id,$request->all())
+	//return redirect('/slider');
 	$text = "\n\tpublic function update($" . "id ,Request $"."request){\n";
-	$text .= "\t\t//code for update\n";
+	$text .= "\t\t$"."this->".lcfirst($_POST['controller'])."Repo->update".ucfirst($_POST['controller'])."($" . "id,$"."request->all());\n";
+	$text .= "\t\treturn redirect('/".lcfirst($_POST['controller'])."');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
-
-	$text = "\n\tpublic function destroy($" . "id){\n";
-	$text .= "\t\t//code for destroy\n";
+	//$this->sliderRepo->deleteSlider($id);
+	//return redirect('/slider');
+	$text = "\n\tpublic function delete($" . "id){\n";
+	$text .= "\t\t$"."this->".lcfirst($_POST['controller'])."Repo->delete".ucfirst($_POST['controller'])."($"."id);\n";
+	$text .= "\t\treturn redirect('/".lcfirst($_POST['controller'])."');\n";
 	$text .= "\t}\n";
 	fwrite($myfile, $text);
 
