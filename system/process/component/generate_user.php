@@ -5,67 +5,54 @@ require_once('../../classes/locate.class.php');
 require_once('../../../include/help_function.php');
 
 //---copy migration---------------------
-$source= '../../../laravel/component/rolepermission/migrations/';
+$source= '../../../laravel/component/user/migrations/';
 $destination ='../../../../database/migrations/';
 copyr($source, $destination); 
 
 //---copy controller---------------------
-$source= '../../../laravel/component/rolepermission/controller/';
+$source= '../../../laravel/component/user/controller/';
 $destination ='../../../../app/Http/Controllers/';
 copyr($source, $destination); 
 
 //---copy repository---------------------
-$source= '../../../laravel/component/rolepermission/repository/';
+$source= '../../../laravel/component/user/repository/';
 $destination ='../../../../app/Repositories/';
 copyr($source, $destination); 
 
 //---copy views---------------------
-$source= '../../../laravel/component/rolepermission/views/';
+$source= '../../../laravel/component/user/views/';
 $destination ='../../../../resources/views/backend/';
 copyr($source, $destination); 
 
 //---copy model---------------------
-$source= '../../../laravel/component/rolepermission/model/';
+$source= '../../../laravel/component/user/model/';
 $destination ='../../../../app/Model/';
 copyr($source, $destination); 
 
 if(file_exists(RouteFolderPath)){
 	$myfile = fopen(RouteFolderPath.'/web.php', "a") or die("Unable to open file!");
 	$text ="/*\n|--------------------------------------------------------------------------\n";
-	$text .="| Role Permission Routes\n";
+	$text .="| User Routes\n";
 	$text .="|--------------------------------------------------------------------------\n*/\n";
 	fwrite($myfile, $text);
-	$text = "Route::group(['prefix' => 'role-permission'], function() { \n";
+	$text = "Route::group(['prefix' => 'admin'], function() { \n";
 	fwrite($myfile, $text);
-		//for role------------------------------------
-		$text = "\tRoute::group(['prefix' => 'role'],function(){\n";
+		//for user------------------------------------
+		$text = "\tRoute::group(['prefix' => 'user'],function(){\n";
 		fwrite($myfile, $text);
 
-		$text = "\t\tRoute::get('/', 'RolePermission\RolePermissionController@index');\n";
-		$text .= "\t\tRoute::post('/create', 'RolePermission\RolePermissionController@createRole');\n";
-		$text .= "\t\tRoute::get('/edit/{id}', 'RolePermission\RolePermissionController@editRole');\n";
-		$text .= "\t\tRoute::post('/update/{id}', 'RolePermission\RolePermissionController@updateRole');\n";
-		$text .= "\t\tRoute::get('/delete/{id}', 'RolePermission\RolePermissionController@deleteRole');\n";
-		$text .= "\t\tRoute::post('/assignpermission', 'RolePermission\RolePermissionController@assignPermission');\n";		
-		fwrite($myfile, $text);
-
-		$text = "\t});\n";
-		fwrite($myfile, $text);
-
-		//for permission---------------------
-		$text = "\tRoute::group(['prefix' => 'permission'],function(){\n";
-		fwrite($myfile, $text);
-
-		$text = "\t\tRoute::get('/', 'RolePermission\RolePermissionController@index');\n";
-		$text .= "\t\tRoute::post('/create', 'RolePermission\RolePermissionController@createPermission');\n";
-		$text .= "\t\tRoute::get('/edit/{id}', 'RolePermission\RolePermissionController@editPermission');\n";
-		$text .= "\t\tRoute::post('/update/{id}', 'RolePermission\RolePermissionController@updatePermission');\n";
-		$text .= "\t\tRoute::get('/delete/{id}', 'RolePermission\RolePermissionController@deletePermission');\n";
+		$text = "\t\tRoute::get('/','User\UserController@index');\n";
+		$text .= "\t\tRoute::get('/create','User\UserController@create');\n";
+		$text .= "\t\tRoute::post('/store','User\UserController@store');\n";
+		$text .= "\t\tRoute::get('/{id}/edit','User\UserController@edit');\n";
+		$text .= "\t\tRoute::get('/{id}','User\UserController@show');\n";
+		$text .= "\t\tRoute::post('/update/{id}','User\UserController@update');\n";	
+		$text .= "\t\tRoute::get('/delete/{id}','User\UserController@delete');\n";	
+		$text .= "\t\tRoute::get('/profile/{id}','User\UserController@profile');\n";		
 		fwrite($myfile, $text);
 
 		$text = "\t});\n";
 		fwrite($myfile, $text);
-
 
 	$text = "}); \n";
 	fwrite($myfile, $text);
@@ -81,12 +68,12 @@ if(file_exists(RouteFolderPath)){
 	//now add function------------------------------------------------------
 	$myfile = fopen('../../../../app/Providers/AppServiceProvider.php', 'a'); 
 	
-	$text = "\n\tpublic function registerRolePermissionRepository() {\n";
+	$text = "\n\tpublic function registerUserRepository() {\n";
 	$text .= "\t\treturn $"."this->app->bind(\n";
 	fwrite($myfile, $text);
 
-	$text = "\t\t\t'App\\" . "\Repositories\\"."\\"."RolePermission"."\\" . "\\"."RolePermission"."Repository',\n"; 
-	$text .= "\t\t\t'App\\" . "\Repositories\\"."\\"."RolePermission"."\\" . "\Eloquent"."RolePermission"."'"; 
+	$text = "\t\t\t'App\\" . "\Repositories\\"."\\"."User"."\\" . "\\"."User"."Repository',\n"; 
+	$text .= "\t\t\t'App\\" . "\Repositories\\"."\\"."User"."\\" . "\Eloquent"."User"."'"; 
 	fwrite($myfile, $text);
 
 	$text = "\n\t\t);\n\t}\n}";
@@ -100,13 +87,13 @@ if(file_exists(RouteFolderPath)){
 	}
 	//now add repository to boot file------------------------------------------------------------
 	$myfile = fopen('../../../../app/Providers/boot.php', 'a');
-	$text = "\n$" . "this->registerRolePermissionRepository();";
+	$text = "\n$" . "this->registerUserRepository();";
 	fwrite($myfile, $text); 
 
 	//now add component menu---------------------------------------------------------------------
 	$myfile = fopen('../../../../resources/views/backend/layouts/component_menu.blade.php', 'a'); 
 	
-	$text = "\n<li><a href=\"{{url('/role-permission/role')}}\"><i class=\"fa fa-circle-o\"></i>RolePermission</a></li>\n";
+	$text = "\n<li><a href=\"{{url('/admin/user')}}\"><i class=\"fa fa-circle-o\"></i>User</a></li>\n";
 	fwrite($myfile, $text); 
 
-new Locate('../../../index.php?menu=component&action=create&success=yes&message=Role Permission Component is added');
+new Locate('../../../index.php?menu=component&action=create&success=yes&message=User Component is Added ');

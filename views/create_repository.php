@@ -24,6 +24,9 @@ $modelFolders = scandir(ModelFolderPathForView);
     <div class="form-group">
       <label class="control-label col-sm-5" for="repository">Select Model:</label>
       <div class="col-sm-7">
+      <div class="checkbox">
+      <label><input type="checkbox" name="model[]" value="User.php">User.php</label>
+      </div>
       <?php foreach ($modelFolders as $file) { if($file !='.'&&$file!='..'){ ?>
         <div class="checkbox">
   			<label><input type="checkbox" name="model[]" value="<?php echo $file; ?>"><?php echo $file; ?></label>
