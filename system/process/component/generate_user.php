@@ -5,9 +5,9 @@ require_once('../../classes/locate.class.php');
 require_once('../../../include/help_function.php');
 
 //---copy migration---------------------
-$source= '../../../laravel/component/user/migrations/';
-$destination ='../../../../database/migrations/';
-copyr($source, $destination); 
+//$source= '../../../laravel/component/user/migrations/';
+//$destination ='../../../../database/migrations/';
+//copyr($source, $destination); 
 
 //---copy controller---------------------
 $source= '../../../laravel/component/user/controller/';

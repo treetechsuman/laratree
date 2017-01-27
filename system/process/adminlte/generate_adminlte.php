@@ -33,6 +33,23 @@ $source= '../../../laravel/controller/';
 $destination ='../../../../app/Http/Controllers/';
 copyr($source, $destination); 
 
+//---move providers ---------------------------------------------
+$source= '../../../laravel/providers/';
+$destination ='../../../../app/Providers/';
+copyr($source, $destination);
+
+//create boot.php inside Provider folder----
+	if(!file_exists('../../../../app/Providers/boot.php')) {
+		$myfile = fopen('../../../../app/Providers/boot.php', 'w');
+		$text = "<?php";
+		fwrite($myfile, $text); 
+	}
+
+//---move config ---------------------------------------------
+$source= '../../../laravel/config/';
+$destination ='../../../../config/';
+copyr($source, $destination);  
+
 
 // add dashboard route---------------------------
 if(file_exists(RouteFolderPath)){
