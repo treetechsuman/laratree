@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{asset('adminlte/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('adminlte/bootstrap/css/custom.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -113,6 +113,11 @@
     $(".alert").delay(4000).slideUp(200, function() {
     $(this).alert('close');
 });
+</script>
+<script type="text/javascript">
+    $('.btn-danger').on('click', function () {
+        return confirm('Are you sure?');      
+    });
 </script>
 </body>
 </html>
