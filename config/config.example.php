@@ -4,8 +4,8 @@ define("AppName", "laraTree");
 
 //database configuration -------
 define("Host", "localhost");
-define("Db", "");
-define("User", "");
+define("Db", "databasename");
+define("User", "root");
 define("Password", "");
 
 //for process---------------------------------------
@@ -32,6 +32,9 @@ $_SESSION['Password'] = '';
 if (!file_exists("../app/Model/")) {
     mkdir("../app/Model/", 0777, true);
 }
+
+$table_in = "Tables_in_".lcfirst(Db);
+define("TableIn",$table_in);
 
 
 ?>
