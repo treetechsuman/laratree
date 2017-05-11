@@ -64,7 +64,7 @@ foreach ($views as $view) {
 
 							$text .= "\t\t\t\t\t</table>\n";
 						}elseif($view=='create'){
-							$text .= "\t\t\t\t\t<form role=\"form\" action=\"{{url('admin/".$variable."/store')}}\" method=\"post\" enctype=\"multipart/form-data\">\n";
+							$text .= "\t\t\t\t\t<form class=\"form-horizontal\" role=\"form\" action=\"{{url('admin/".$variable."/store')}}\" method=\"post\" enctype=\"multipart/form-data\">\n";
 							$text .= "\t\t\t\t\t\t{!! csrf_field() !!}\n";
 							fwrite($myfile, $text);
 									foreach ($table_fields as $field) {
@@ -106,7 +106,7 @@ foreach ($views as $view) {
 							$text .= "\t\t\t\t\t\t</div>\n";
 							$text .= "\t\t\t\t\t</form>\n";
 						}elseif($view=='edit'){
-							$text .= "\t\t\t\t\t<form role=\"form\" action=\"{{url('admin/".$variable."/update/'.$" .$variable."['id'])}}\" method=\"post\" enctype=\"multipart/form-data\">\n";
+							$text .= "\t\t\t\t\t<form class=\"form-horizontal\" role=\"form\" action=\"{{url('admin/".$variable."/update/'.$" .$variable."['id'])}}\" method=\"post\" enctype=\"multipart/form-data\">\n";
 							$text .= "\t\t\t\t\t\t{!! csrf_field() !!}\n";
 							fwrite($myfile, $text);
 									foreach ($table_fields as $field) {
