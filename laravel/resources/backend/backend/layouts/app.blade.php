@@ -68,6 +68,9 @@
     </div>
     <!-- /.content-wrapper -->
 @include('backend.layouts.footer')
+  <!-- Control Sidebar -->
+  @include('backend.layouts.right_nav')
+  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
