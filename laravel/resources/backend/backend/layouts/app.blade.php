@@ -130,5 +130,25 @@
         $(this).ekkoLightbox();
     });
 </script>
+<script type="text/javascript">
+    $('#change_form').hide();
+    $('#change_password').on('click',function(){
+        $('#change_form').toggle();
+        //alert('this is click');
+    });
+    $('#rpassword').on('keyup',function(){
+        
+        var password = $('#password').val();
+        var rpassword = $('#rpassword').val();
+        if(password != rpassword){
+           $(this).parent().parent().addClass('has-error');
+           $('#save').prop('disabled', false);
+        }else{
+            //alert('password matech');
+            $(this).parent().parent().removeClass('has-error'); 
+        }
+    });
+               
+</script>
 </body>
 </html>
